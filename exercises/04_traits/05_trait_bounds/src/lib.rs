@@ -5,10 +5,8 @@
 // different _semantics_. We'll cover those differences later in the course when we talk about ordered
 // collections (e.g. BTreeMap).
 
-use std::cmp;
-
 /// Return the minimum of two values.
-pub fn min<T: cmp::PartialOrd>(left: T, right: T) -> T {
+pub fn min<T: Ord>(left: T, right: T) -> T {
     if left <= right {
         left
     } else {
