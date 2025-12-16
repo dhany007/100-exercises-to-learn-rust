@@ -34,7 +34,13 @@ impl TicketStore {
     pub fn add_ticket(&mut self, ticket: Ticket) {
         self.tickets.push(ticket);
     }
+
+    // Provide an `iter` method that returns an iterator over `&Ticket` items.
+    pub fn iter(&self) -> std::slice::Iter<Ticket> {
+        self.tickets.iter()
+    }
 }
+
 
 #[cfg(test)]
 mod tests {
