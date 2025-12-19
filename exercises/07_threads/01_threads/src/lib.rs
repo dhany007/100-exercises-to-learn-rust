@@ -15,7 +15,25 @@
 use std::thread;
 
 pub fn sum(v: Vec<i32>) -> i32 {
-    todo!()
+    // get mid vector
+    let mid = v.len() / 2;
+
+    // get left vector to the mid and to_vec
+    let left = v[..mid].to_vec();
+
+    // get mid to the right and to_vec
+    let right = v[mid..].to_vec();
+
+    // move = ownership left dipindahkan ke thread
+    let handle_left = thread::spawn(move || {
+        left.iter().sum::<i32>() //turbofish syntax
+    });
+
+    let handle_right = thread::spawn(move || {
+        right.iter().sum::<i32>()
+    });
+
+    handle_left.join().unwrap() + handle_right.join().unwrap()
 }
 
 #[cfg(test)]
